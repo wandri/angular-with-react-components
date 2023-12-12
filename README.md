@@ -2,6 +2,8 @@
 
 A live demo is available [here](https://wandri.github.io/angular-with-react-components/)
 
+![demo](https://github.com/wandri/angular-with-react-components/assets/15016833/9b3cf9d5-5504-404b-b16a-263852a747f6)
+
 In order to use a React component, you can follow this implementation of [react-spreadsheet](https://github.com/iddan/react-spreadsheet) example:
 
 1. Install the React packages
