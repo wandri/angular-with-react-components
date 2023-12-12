@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -12,7 +13,7 @@ import {
 import {createRoot, Root} from "react-dom/client";
 import ReactDOM from "react-dom";
 import * as React from "react";
-import {ReactSpreadsheet} from "./SpreadsheetProps";
+import {ReactSpreadsheet} from "./ReactSpreadsheet";
 
 const containerElementRef = "reactComponentContainer"
 
@@ -22,23 +23,17 @@ const containerElementRef = "reactComponentContainer"
   imports: [],
   template: `
       <div #${containerElementRef}></div>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReactComponentComponent implements OnChanges, OnDestroy, AfterViewInit {
   @ViewChild(containerElementRef, {static: true}) containerRef!: ElementRef;
 
   @Input() data: { value: string }[][] = [];
-  @Output() public componentClick = new EventEmitter<void>();
   @Output() public onSelect = new EventEmitter<{ row?: number, column?: number }>();
   root?: Root;
 
   constructor() {
-    this.handleClick = this.handleClick.bind(this);
     this.handleActivate = this.handleActivate.bind(this);
-  }
-
-  public handleClick(): void {
-    this.componentClick.emit();
-    this.render();
   }
 
   public handleActivate(value: { row?: number, column?: number }): void {
